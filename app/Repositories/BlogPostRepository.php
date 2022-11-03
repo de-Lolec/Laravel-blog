@@ -40,7 +40,10 @@ class BlogPostRepository extends CoreRepository
             'published_at',
             'user_id',
             'category_id',
+<<<<<<< HEAD
             'excerpt',
+=======
+>>>>>>> 6c7a484 (Laravel blog)
         ];
 
         //startConditions у нас создается экземпляр класса BlogPost

@@ -1,43 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="container">
-        <div class="p-4 p-md-1 mb-4 rounded text-bg-dark">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-                <p class="lead my-2">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
 
-            </div>
-        </div>
+                @include('blog.admin.posts.includes.result_messages')
 
-
-
-        <div class="row g-5">
-            <div class="col-md-8">
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    From the Firehose
-                </h3>
-
-                <article class="blog-post">
-
-
+                <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+                    <a class="btn btn-primary" href="{{ route('blog.admin.posts.create') }}">Написать</a>
+                </nav>
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Автор</th>
+                                <th>Категория</th>
+                                <th>Заголовок</th>
+                                <th>Дата публикации</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             @foreach($paginator as $post)
                                 @php /** @var \App\Models\BlogPost $item */ @endphp
-
-                                <h2 class="blog-post-title"> <a href="{{ route('blog.main', $post->id) }}">
-                                        {{ $post->title }}
-                                    </a></h2>
-
-                                <p class="blog-post-meta">  {{ $post->published_at ? \Carbon\Carbon::parse($post->published_at)->format('d.M H:i') : ''}} by <a href="#">{{ $post->user->name }}</a></p>
-                                <p> {{ $post->excerpt }} </p>
-                                <hr>
-
-
+                                <tr @if(!$post->is_published) style="background-color: #ccc;" @endif>
+                                    <td>{{ $post->id }}</td>
+                                    <td>{{ $post->user->name }}</td>
+                                    <td>{{ $post->category->title }}</td>
+                                    <td>
+                                        <a href="{{ route('blog.admin.posts', $post->id) }}">
+                                            {{ $post->title }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ $post->published_at ? \Carbon\Carbon::parse($post->published_at)->format('d.M H:i') : ''}}
+                                    </td>
+                                </tr>
                             @endforeach
 
-
+                            </tbody>
+                        </table>
                     </div>
-
+                </div>
+            </div>
+        </div>
 
         @if($paginator->total() > $paginator->count())
             <br>

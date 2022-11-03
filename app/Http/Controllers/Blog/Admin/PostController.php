@@ -69,7 +69,6 @@ class PostController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-
     public function store(BlogPostCreateRequest $request)
     {
         $data = $request->input();
