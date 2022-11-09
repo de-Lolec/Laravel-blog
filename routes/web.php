@@ -47,7 +47,7 @@ Route::group(['prefix' => '/',], function () {
     Route::get('/', [App\Http\Controllers\blog\HomeController::class, 'index'])
         ->name('blog.main');
     Route::get('/post/{id}', [App\Http\Controllers\blog\HomeController::class, 'post'])
-        ->name('blog.main');
+        ->name('blog.view');
     Route::post('/comment', [App\Http\Controllers\CommentController::class, 'store'])
         ->name('comments.store');
 });

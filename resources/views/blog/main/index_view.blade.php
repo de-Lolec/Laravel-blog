@@ -20,7 +20,7 @@
                     <hr>
                     <h4>Display Comments</h4>
 
-                    @include('blog.main.commentsDisplay', ['comments' => $item->comments, 'post_id' => $item->id])
+                    @include('blog.main.commentsDisplay', ['comments' => $item->comments, 'blog_post_id' => $item->id])
 
                     <hr />
 
@@ -29,7 +29,7 @@
                         @csrf
                         <div class="form-group">
                             <textarea class="form-control" name="body"></textarea>
-                            <input type="hidden" name="post_id" value="{{ $item->id }}" />
+                            <input type="hidden" name="blog_post_id" value="{{ $item->id }}" />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" value="Add Comment" />

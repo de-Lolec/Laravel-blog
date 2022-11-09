@@ -23,6 +23,8 @@ class BlogPost extends Model
             'content_raw',
             'is_published',
             'published_at',
+            'comments',
+            'blog_post_id'
         ];
 
     /**
@@ -47,9 +49,9 @@ class BlogPost extends Model
         return $this->belongsTo(User::class);
 
     }
-
+        //Комментарии принадлежат посту
     public function comments()
     {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
+        return $this->HasMany(Comment::class);
     }
 }

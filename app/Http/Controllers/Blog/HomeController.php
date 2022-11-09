@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\blog;
 
+use App\Models\BlogPost;
 use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 use App\Repositories\BlogPostRepository;
@@ -18,7 +19,7 @@ class HomeController extends BaseController
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
 
         parent::__construct();
         //Частные свойства проинициализируем
@@ -42,11 +43,10 @@ class HomeController extends BaseController
     }
 
     public function post($id){
-        $item = $this->blogPostRepository->getEdit($id);
-        if(empty($item)){
-            abort(404);
-        }
 
+        $item = BlogPost::find($id);
+       // dd($item->comments);
+      //  $comment = Comment::find($id);
         return view('blog.main.index_view',
             compact('item'));
 

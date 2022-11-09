@@ -24,7 +24,7 @@ class CommentController extends Controller
 
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
-
+      //  dd($input);
        // Comment::create($input);
         $input = (new Comment())->create($input);
         return back();
@@ -33,4 +33,5 @@ class CommentController extends Controller
     public function show($id){
 
     }
+
 }
