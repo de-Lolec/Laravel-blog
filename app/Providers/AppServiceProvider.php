@@ -34,8 +34,7 @@ class AppServiceProvider extends ServiceProvider
         //Ненужная хуйня для MariaDB
         Schema::defaultStringLength(191);
 
-        BlogPost::observe(BlogPostObserver::class);
-        BlogCategory::observe(BlogCategoryObserver::class);
+
     }
 
     /**

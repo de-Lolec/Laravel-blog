@@ -39,18 +39,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
 
 Auth::routes();
 
-//Route::get('/', [App\Http\Controllers\blog\HomeController::class, 'index'])->name('blog.main');
+Route::get('/', [App\Http\Controllers\ListController::class, 'index'])->name('blog.main');
 //
 //Route::get('/', [App\Http\Controllers\blog\HomeController::class, 'index'])->name('blog.main');
 
-Route::group(['prefix' => '/',], function () {
-    Route::get('/', [App\Http\Controllers\blog\HomeController::class, 'index'])
-        ->name('blog.main');
-    Route::get('/post/{id}', [App\Http\Controllers\blog\HomeController::class, 'post'])
-        ->name('blog.view');
-    Route::post('/comment', [App\Http\Controllers\CommentController::class, 'store'])
-        ->name('comments.store');
-});
+//Route::group(['prefix' => '/',], function () {
+//    Route::get('/', [App\Http\Controllers\blog\HomeController::class, 'index'])
+//        ->name('blog.main');
+//    Route::get('/post/{id}', [App\Http\Controllers\blog\HomeController::class, 'post'])
+//        ->name('blog.view');
+//    Route::post('/comment', [App\Http\Controllers\CommentController::class, 'store'])
+//        ->name('comments.store');
+//});
 //Route::resource('categories', 'CategoryController')
 //    ->only($methods)
 //    ->names('blog.admin.categories');
@@ -65,27 +65,27 @@ Route::group(['prefix' => '/',], function () {
 //        ->name('digging_deeper.collections');
 //});
 
-Route::group(['prefix' => 'digging_deeper',], function (){
-    Route::get( '/collections', [App\Http\Controllers\DiggingDeeperController::class, 'collections'])
-        ->name('digging_deeper.collections');
-});
-
-// Админка блога
-$groupData = [
-    'namespace' => 'App\Http\Controllers\Blog\Admin',
-    'prefix' => 'admin/blog',
-];
-
-Route::group($groupData, function () {
-    //BlogCategory
-    $methods = ['index', 'edit', 'update', 'create', 'store',];
-    Route::resource('categories', 'CategoryController')
-        ->only($methods)
-        ->names('blog.admin.categories');
-
-    //BlogPost
-    Route::resource('posts', 'PostController')
-        ->except(['show'])
-        ->names('blog.admin.posts');
-
-});
+//Route::group(['prefix' => 'digging_deeper',], function (){
+//    Route::get( '/collections', [App\Http\Controllers\DiggingDeeperController::class, 'collections'])
+//        ->name('digging_deeper.collections');
+//});
+//
+//// Админка блога
+//$groupData = [
+//    'namespace' => 'App\Http\Controllers\Blog\Admin',
+//    'prefix' => 'admin/blog',
+//];
+//
+//Route::group($groupData, function () {
+//    //BlogCategory
+//    $methods = ['index', 'edit', 'update', 'create', 'store',];
+//    Route::resource('categories', 'CategoryController')
+//        ->only($methods)
+//        ->names('blog.admin.categories');
+//
+//    //BlogPost
+//    Route::resource('posts', 'PostController')
+//        ->except(['show'])
+//        ->names('blog.admin.posts');
+//
+//});
